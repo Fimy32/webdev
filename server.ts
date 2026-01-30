@@ -44,6 +44,20 @@ app.post("/addSong", (req, res) => {
     }
 });
 
+app.put("/updateSong", (req, res) =>{
+    try {
+        const stmt = db.prepare("UPDATE wadsongs SET price = ?,quantity = ? WHERE id = ?");
+        const info = stmt.run(req.body.price, req.body.quantity, req.body.id);
+        if(info.changes == 1) {
+            res.status(200).json({success: true});
+        } else {
+            res.status(404).json({error: "Couldn't update course'."});
+        }
+    } catch(error) {
+        res.status(500).json({error: error});
+    }
+});
+
 // app.post("/addsong/:id/:title/:arist/:year/:downloads/:price/:quantity", (req, res) => {
 //       const stmt = db.prepare("INSERT * FROM wadsongs WHERE id = ?");
 //       const results = stmt.get(req.params.id)
