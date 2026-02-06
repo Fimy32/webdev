@@ -6,6 +6,7 @@ const app = express();
 const db = new database("wadsongs.db")
 
 app.use(express.json());
+app.use(express.static("public"));
 
 app.get('/', (req,res)=> {
     res.send('Hello World from Express!');

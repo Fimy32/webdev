@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type='module' src='index.mjs'></script>
+<script type='module' src='index.js'></script>
 <style type='text/css'>
 body {
 font-family: 'Berlin Sans FB', Helvetica, Arial, sans-serif;
@@ -21,26 +21,41 @@ text-align: center;
 font-size: 120%;
 }
 
-#htresults {
+#artistText {
 border: 1px solid black;
 background-color: #e0e0ff;
-width: 50%;
+width: 90%;
 height: 200px;
 overflow: auto;
 }
 </style>
 </head>
 <body>
-<p><img src='images/hittastic.png' alt='hittastic logo' /></p>
+<p><img src='images/logo.png' alt='hittastic logo' /></p>
 <h1>Welcome to HitTastic!</h1>
 <p>Search and shop for your favourite top 40 hits on HitTastic! Whether it's pop, rock, rap or pure liquid cheese you're into, you can be sure to find it
 on HitTastic! With the full range of top 40 hits since 1952 on our database, 
 you can guarantee you'll find what you're looking for in stock. Plus, with our 
 Year Search find out exactly what was in the chart in any year. </p>
 <div>
-Artist:<input id="theArtist">
-<button id="search">Search!</button>
+Artist:<input id="artistButton">
+<button id="artistSearch">Search!</button>
 </div>
-<div id='htresults'></div>
+<div id="artistText"></div>
+
+<div id="songAddDiv">
+<form>
+      <p>Add A Song</p>
+      <label for="songTitle">Title:</label><br>
+      <input type="text" id="songTitle" name="songTitle"><br>
+      <label for="songArtist">Artist:</label><br>
+      <input type="text" id="songArtist" name="songArtist"><br>
+      <label for="songYear">Year:</label><br>
+      <input type="text" id="songYear" name="songYear"><br>
+      <label for="songPrice">Price:</label><br>
+      <input type="text" id="songPrice" name="songPrice"><br>
+      <input type="submit" value="Add" id="addSongButton">
+</form>
+</div>
 </body>
 </html>
