@@ -43,8 +43,13 @@ document.getElementById("addSongButton")!.addEventListener('click', async()=> {
       }
       
       try {
-            const response = await fetch(`/addsong/{newSong}`);
-      } catch(e) { 
+            const response = await fetch(`/addsong/{newSong}`, {
+      method: 'POST',
+      headers: {
+            'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(newSong)
+            catch(e) { 
             // Handle promise rejections
             alert(e);
       }
