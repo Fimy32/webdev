@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "esModuleInterop": true,
+        "target": "esnext",
+        "skipLibCheck": true,
+        "noEmit": true
+    },
+    "files": ["main.ts", "server.ts"]
+}
