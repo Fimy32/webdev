@@ -59,6 +59,11 @@ app.put("/updateSong", (req, res) =>{
     }
 });
 
+app.get("/hometown/:artist", (req, res) => {
+      const stmt = db.prepare("SELECT * FROM artists WHERE name = ?");
+      const results = stmt.get(req.params.artist)
+      res.json(results)});
+
 // app.post("/addsong/:id/:title/:arist/:year/:downloads/:price/:quantity", (req, res) => {
 //       const stmt = db.prepare("INSERT * FROM wadsongs WHERE id = ?");
 //       const results = stmt.get(req.params.id)
