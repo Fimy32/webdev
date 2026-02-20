@@ -71,15 +71,17 @@ app.get("/hometown/:artist", (req, res) => {
     }
 });
 
-app.get("/LatLng/:hometown", (req, res) => {
+
+app.post("/addHometown", (req, res) => {
     try {
-      const stmt = db.prepare("SELECT lat, lon FROM artists WHERE hometown = ?");
-      const results = stmt.get(req.params.hometown)
-      res.json(results)
-    } catch(error) {
-        res.status(500).json({error: error});
-    }
-});
+            const stmt = db.prepare("INSERT INTO artists(name, hometown, lat, lon) VALUES(?,?,?,?)");
+            const info = stmt.run(req.body.name, req.body.hometown, req.body.lat, req.body.lon);
+            res.json({id: info.lastInsertRowid});
+        } catch(error) {
+            console.log(error); 
+            res.status(500).json({ error: error });
+        }
+    });
 
 // app.post("/addsong/:id/:title/:arist/:year/:downloads/:price/:quantity", (req, res) => {
 //       const stmt = db.prepare("INSERT * FROM wadsongs WHERE id = ?");

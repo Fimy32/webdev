@@ -20,13 +20,16 @@ L.marker(L.latLng(51.000155, -1.478260)).addTo(map);
 const startingLocation = L.marker(pos).addTo(map);
 startingLocation.bindPopup("You Started here!");
 
-map.on("click", e => {
-    //alert(`Location:\nLattitude: ${e.latlng.lat} \nLongitude: ${e.latlng.lng}`);
-    const text = prompt('Please enter some text');
-    if(text !== null) {
-        const marker1 = L.marker(e.latlng).addTo(map);
-        marker1.bindPopup(text);
+map.on("click", async e => {
+    const artistName = prompt('Please enter an artist name');
+    const hometown = prompt('Please enter the artist\'s hometown');
+    const hometownAdd = {
+        artistname: artistName,
+        hometown: hometown,
+        lat: e.latlng.lat,
+        lon: e.latlng.lng
     }
+    const response = await fetch(`http://localhost:3000/addHometown?artistname=${artistName}&hometown=${hometown}&lat=${e.latlng.lat}&lon=${e.latlng.lng}`);
 });
 
 document.getElementById("artistHometownButton")!.addEventListener('click', async()=> {
@@ -36,6 +39,8 @@ document.getElementById("artistHometownButton")!.addEventListener('click', async
             const response = await fetch(`http://localhost:3000/hometown/${artist}`);
             const data = await response.json();
             map.setView(L.latLng(data.lat, data.lon), 14);
+            const marker1 = L.marker(L.latLng(data.lat, data.lon)).addTo(map);
+            marker1.bindPopup(`Artist: ${artist}\nHometown: ${data.hometown}`);
             document.getElementById("artistHometownParagrapth")!.innerHTML = `Hometown: ${data.hometown}`;
       } catch(e) { 
             // Handle promise rejections
