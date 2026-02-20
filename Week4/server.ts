@@ -75,7 +75,7 @@ app.get("/hometown/:artist", (req, res) => {
 app.post("/addHometown", (req, res) => {
     try {
             const stmt = db.prepare("INSERT INTO artists(name, hometown, lat, lon) VALUES(?,?,?,?)");
-            const info = stmt.run(req.body.name, req.body.hometown, req.body.lat, req.body.lon);
+            const info = stmt.run(req.body.artistname, req.body.hometown, req.body.lat, req.body.lon);
             res.json({id: info.lastInsertRowid});
         } catch(error) {
             console.log(error); 

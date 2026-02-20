@@ -29,7 +29,14 @@ map.on("click", async e => {
         lat: e.latlng.lat,
         lon: e.latlng.lng
     }
-    const response = await fetch(`http://localhost:3000/addHometown?artistname=${artistName}&hometown=${hometown}&lat=${e.latlng.lat}&lon=${e.latlng.lng}`);
+    const response = await fetch(`http://localhost:3000/addHometown`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(hometownAdd)
+    });
+    const data = await response.json();
 });
 
 document.getElementById("artistHometownButton")!.addEventListener('click', async()=> {
