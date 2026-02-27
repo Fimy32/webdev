@@ -1,0 +1,1 @@
+npm i vite react react-dom @types/react @types/react-dom typescript @vitejs/plugin-react
