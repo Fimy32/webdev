@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import ArtistSearchBox from "./artistSearchBox"
+import ArtistSearchResults from "./artistSearchResults"
+
 
 interface Song {
     id: number,
@@ -13,9 +16,11 @@ export default function SongList() {
     const [songList, setSongList] = useState<Song[]>([]);
     const [artistName, setArtistName] = useState("");
 
-    const artistListHTML = songList.map ( song => <li key={song.id}>{song.title}</li>);
    
-    return [songList, setSongList], [artistName, setArtistName], artistListHTML
+    return <div>
+        <ArtistSearchBox title={artistName} titleChange={setArtistName}, setSongList={setSongList} />
+        <ArtistSearchResults name={name} />
+        </div>
 }
 
 
